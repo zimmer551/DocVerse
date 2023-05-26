@@ -83,4 +83,22 @@ Save jwt after succesfull login
 Create middleware to compare jwt, do routing if success in server side.
 
 
+Made RequireAuth.js to protect client routing using jwt verification
+if not verified, save location, redirect to login;
+redirect to saved location after login, using useLocation hook;
+
+Firebase:
+ - Realtime Database: Firebase's Realtime Database is a NoSQL cloud-hosted database 
+    that allows you to store and sync data in real time.
+ - Authentication: Firebase Authentication provides easy-to-use authentication services
+    , including email/password authentication, social media login (e.g., Google, Facebook, Twitter),
+     and more. It simplifies user management and authentication in your MERN stack application.
+ - Cloud Firestore: Firestore is a flexible and scalable NoSQL document database offered by Firebase. 
+ - Cloud Storage
+ - Hosting and Analytics  
+ 
+React- routes v6.4 's data api , we use the Router’s loader() function to fetch the data before rendering the route element
+ - use createBrowserRouter() to access data api
+ - Data api : a data prop, which pprovide initial needed data, to corrosponding component, before rendering it
+
  */

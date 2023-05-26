@@ -1,24 +1,31 @@
 import React from 'react';
 import '../styles/Register.css';
 import { Button, Checkbox, Form, Input, message } from 'antd';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { hideLoading, showLoading } from '../redux/features/alertSlice';
 
   const Login = () => { 
     
+    const dispatch = useDispatch();
     const navigate = useNavigate();
+    const { state } = useLocation();
 
     const onFinish = async(values) => {
       try {
+        dispatch(showLoading());
         const res = await axios.post('http://localhost:8080/api/v1/user/login', values);
+        dispatch(hideLoading());
         if (res.data.success) {
           message.success(`Login Successful. Welcome !`);
           localStorage.setItem("token", res.data.token);
-          navigate('/');
+          navigate(state?.path || '/');
         } else {
           message.error(res.data.message);
         }
       } catch (err) {
+        dispatch(hideLoading());
         message.error(`Login Failed`);
       }
     };

@@ -3,15 +3,20 @@ import '../styles/Register.css';
 import { Button, Checkbox, Form, Input, message } from 'antd';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { hideLoading, showLoading } from '../redux/features/alertSlice';
 
 
   const Register = () => { 
 
+    const dispatch = useDispatch();
     const navigate = useNavigate();   
 
     const onFinish = async(values) => {
       try {
+        dispatch(showLoading());
         const res = await axios.post('/api/v1/user/register', values);
+        dispatch(hideLoading());
         if (res.data.success) {
           message.success("Registered successfully");
           navigate('/login');
@@ -21,7 +26,7 @@ import axios from 'axios';
         
 
       } catch (err) {
-        console.log(err);
+        dispatch(hideLoading());
         message.error("Something went wrong");
       }
     };
