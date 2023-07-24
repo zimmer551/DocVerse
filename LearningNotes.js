@@ -8,7 +8,7 @@ You can specify the HTTP method, URL path, and the corresponding handler functio
 to execute when that route is accessed. Express supports various HTTP methods like GET, POST, PUT, DELETE, etc.
 
 - Middleware Support: Express middleware functions can be used to perform operations on 
-incoming requests and outgoing responses. It allows you to add functionality in a modular way,
+ incoming requests and outgoing responses. It allows you to add functionality in a modular way,
  such as parsing request bodies, handling authentication, logging, error handling, and more. 
  Middleware functions can be chained together to process requests in a specific order.
 
@@ -100,5 +100,12 @@ Firebase:
 React- routes v6.4 's data api , we use the Router’s loader() function to fetch the data before rendering the route element
  - use createBrowserRouter() to access data api
  - Data api : a data prop, which pprovide initial needed data, to corrosponding component, before rendering it
+ - To use the AuthProvider within the router context, we’ll need to create an <AuthLayout />
+   to wrap the outlet element with AuthProvider.This will enable all the child Routes to have access to auth context
+ 
+Created Doctor schema, made it a model of user collection
+Created doctor enrollment form 
+create a new route or continue in user route in this case
+create controller
 
  */

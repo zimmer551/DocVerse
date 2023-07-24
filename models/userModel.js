@@ -24,6 +24,23 @@ const userSchema = new mongoose.Schema({
         type: Boolean,
         required: [false, 'remember is not required']
     },
+    isAdmin: {
+        type: Boolean,
+        default: false,
+    },
+    isDoctor: {
+        type: Boolean,
+        default: false,
+    },
+    notification: {
+        type: Array,
+        default: [],
+    },
+    seenNotification: {
+        type: Array,
+        default: [],
+    }
+
 })
 
 const userModel = mongoose.model('users', userSchema); // collection name, schema name    

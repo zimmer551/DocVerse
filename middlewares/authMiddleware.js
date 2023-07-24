@@ -3,7 +3,7 @@ const JWT = require("jsonwebtoken");
 // this authorization middleware verifies the authenticity of the token, 
 // extracts the user ID from the decoded token, 
 // and attaches it to the req.body.userId property. 
-// This allows subsequent middleware or route handlers to identify 
+// This allows subsequent middleware or route handlers to identity 
 // and handle authenticated requests appropriately.
 
 module.exports = async (req, res, next) => {

@@ -1,5 +1,6 @@
 import React from "react";
 import { Navigate, Route } from "react-router-dom";
+import {message} from 'antd'; 
 
 
 /**
@@ -16,6 +17,11 @@ export const ProtectedRoute = ({component: Component, isAuthenticated, ...rest})
     />
 }
 
+export const handleLogout = () => {
+    localStorage.clear();
+    message.success("You are logegd out !")
+    window.location.href = "/login";
+}
 
 
 
