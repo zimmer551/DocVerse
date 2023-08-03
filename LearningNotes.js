@@ -108,4 +108,14 @@ Created doctor enrollment form
 create a new route or continue in user route in this case
 create controller
 
+in useEffect(() => {} , []); if i call a fetch fn, whose def is outside useEffect, that fn's ref changes on every rerender,
+cause infinite loop, to avoid this, 
+const getList = useCallback(() => {
+    // Some logic to fetch data
+  }, []);
+  Using useCallback with an empty dependency array ensures that getList has a stable reference across renders,
+   and it won't be considered as a changing dependency for the useEffect Hook.
+  OR
+  write fetch logic inside useEffect
+
  */

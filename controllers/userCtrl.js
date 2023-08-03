@@ -165,18 +165,35 @@ const applyDoctorController = async(req, res) => {
     }
 }
 
-/**
- * 
- */
-
 const getAllNotifications = async (req, res) => {
     try {
         const user = await userModel.findOne({_id: req.body.userId});
-        const {seenNotification, notification} = user;
-        seenNotification.push(...notification);
+        const {notification} = user;
+        user.seenNotification = user.seenNotification.concat(notification);
         user.notification = [];
-        user.seenNotification = notification;
         const updatedUser = await user.save();
+        delete updatedUser.password;
+        res.status(200).send({
+            success: true,
+            message: "All notifications marked as read",
+            data: updatedUser,
+        })
+    } catch (error) {
+        console.log("Notif. ctrl error ",{error});
+        res.status(500).send({
+            success: false,
+            message: `Failed to fetch notification`,
+            error,
+        })
+    }
+}
+
+const deleteAllNotifications = async (req, res) => {
+    try {
+        const user = await userModel.findOne({_id: req.body.userId});
+        user.seenNotification = [];
+        const updatedUser = await user.save();
+        delete updatedUser.password;
         res.status(200).send({
             success: true,
             message: "All notifications marked as read",
@@ -198,4 +215,5 @@ module.exports = {
     authController,
     applyDoctorController,
     getAllNotifications,
+    deleteAllNotifications,
 };

@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Homepage from "./pages/Homepage";
 import InvalidPage from "./pages/InvalidPage";
 import Login from "./pages/Login";
@@ -8,6 +8,7 @@ import Spinner from "./components/Spinner";
 import { RequireAuth } from "./components/RequireAuth";
 import ApplyDoctor from "./pages/ApplyDoctor";
 import Notification from "./pages/Notification";
+import Lists from "./pages/Lists";
 
 function App() {
 
@@ -26,6 +27,7 @@ function App() {
                 <Route exact path="" element={<Homepage/>}/>
                 <Route path="/apply-doctor" element={<ApplyDoctor />}/>
                 <Route path="/notification" element={<Notification />}/>
+                <Route path="/admin/users" element={<Lists />}/>
               </Route>
             </Routes>
           }

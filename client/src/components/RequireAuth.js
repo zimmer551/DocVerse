@@ -28,6 +28,7 @@ export const RequireAuth = ({children}) => {
   
     useEffect(() => {
       getUserData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
 
     const isAuthenticated = () => {

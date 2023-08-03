@@ -30,13 +30,8 @@ export const adminSideBarMenu = [
         icon: "fa-solid fa-house"
     },
     {
-        name: "Doctors",
-        path: "/doctors",
-        icon: "fa-solid fa-user-doctor"
-    },
-    {
         name: "Users",
-        path: "/users",
+        path: "/admin/users",
         icon: "fa-duotone fa-user"
     },
     {

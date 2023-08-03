@@ -17,6 +17,7 @@ module.exports = async (req, res, next) => {
             });
             else {
                 req.body.userId = decodedToken.id;
+                // req is modified in middleware
                 next(); // execute next code
             }
         });

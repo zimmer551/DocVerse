@@ -4,6 +4,7 @@ const { loginController,
     authController,
     applyDoctorController,
     getAllNotifications,
+    deleteAllNotifications,
  } = require('../controllers/userCtrl');
 const authMiddleware = require('../middlewares/authMiddleware');
 
@@ -22,10 +23,13 @@ router.post('/register', registerController);
 router.post('/getUserData', authMiddleware, authController);// authController will be the CB
 
 // Apply Doctor || POST   
-router.post('/apply-doctor', authMiddleware, applyDoctorController);// authController will be the CB
+router.post('/apply-doctor', authMiddleware, applyDoctorController);// applyDoctorController will be the CB
 
 // Get Notification || GET   
-router.post('/get-all-notifications', authMiddleware, getAllNotifications);// authController will be the CB
+router.post('/get-all-notifications', authMiddleware, getAllNotifications);// getAllNotifications will be the CB
+
+// Get Notification || DELETE   
+router.post('/delete-all-notifications', authMiddleware, deleteAllNotifications);// deleteAllNotifications will be the CB
 
 
 module.exports = router;
