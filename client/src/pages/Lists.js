@@ -20,7 +20,7 @@ const Lists = () => {
         />
     }]
 
-  return (
+    return (
     <Layout>
         <Tabs items={items}/>
     </Layout>
@@ -76,19 +76,26 @@ const List = (props) => {
                 title: "Actions",
                 key: "actions",
                 dataIndex: "actions",
-                // render: (text, record) => (
-                //     <div className='d-flex'>
-                //         {record.status === "pending" ?
-                //             <button className='btn btn-success'>Approve</button> : 
-                //             <button className='btn btn-danger'>Reject</button>
-                //         }
-                //     </div>
-                // ) 
+                render: (text, record) => (
+                    <div className='d-flex'>
+                        {record.status === "pending" ?
+                            <button className='btn btn-success'>Approve</button> : 
+                            <button className='btn btn-danger'>Reject</button>
+                        }
+                    </div>
+                ) 
             }
         ]
     }
 
+    useEffect(()=> {
+        getList(listPageType);
+        console.log({listPageType})
+    }, [listPageType]);
+
+
     const getList = useCallback(async() => {
+        
         try {
             const res = await axios.post("http://localhost:8090/api/v1/admin/getList",{
                 listType: listPageType,
@@ -114,9 +121,11 @@ const List = (props) => {
                                 item.username : `${item.firstName} ${item.lastName}`,
                             "emailid": item.emailid,
                             "status": item.applicationStatus,
+                            "actions": ""
                         })
                     }
                 })
+                console.log(">>",{listData})
                 setListData(listData);
                 message.success(res.data.message);
             } else {
@@ -128,14 +137,11 @@ const List = (props) => {
         } 
     }, []);
 
-    useEffect(()=> {
-        getList(listPageType);
-        console.log({listPageType})
-    }, [listPageType]);
-  return (
-    <Table dataSource={listData} 
-    columns={columns} 
-    size="small"
-    />
-  )
+    
+    return (
+        <Table dataSource={listData} 
+            columns={columns[listPageType]} 
+            size="small"
+        />
+    )
 }
