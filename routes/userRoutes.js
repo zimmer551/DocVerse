@@ -5,6 +5,7 @@ const { loginController,
     applyDoctorController,
     getAllNotifications,
     deleteAllNotifications,
+    bookDoctorController,
  } = require('../controllers/userCtrl');
 const authMiddleware = require('../middlewares/authMiddleware');
 
@@ -31,5 +32,7 @@ router.post('/get-all-notifications', authMiddleware, getAllNotifications);// ge
 // Get Notification || DELETE   
 router.post('/delete-all-notifications', authMiddleware, deleteAllNotifications);// deleteAllNotifications will be the CB
 
+// BOOK DOCTOR || POST
+router.post('/book-doctor', authMiddleware, bookDoctorController);
 
 module.exports = router;

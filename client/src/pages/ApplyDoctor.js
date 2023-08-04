@@ -36,20 +36,15 @@ const ApplyDoctor = () => {
             message.error("Something Went Wrong !")
         }
     }
-
+console.log({user})
   return (
-    <Layout>
+    <>
         <h1 className='text-center'>Apply As A Doctor</h1>
         <Form layout='vertical' onFinish={handleFinish} className="m-3">
             <h5 className='text-dark'>Personal Details</h5>
             <Row gutter={20}>
                 <Col xs={24} md={24} lg={8}>
-                    <Form.Item label="First Name" name="firstName" required rules={[{required: true}]}>
-                        <Input type="text" placeholder='first name' />
-                    </Form.Item>
-                </Col>
-                <Col xs={24} md={24} lg={8}>
-                    <Form.Item label="Last Name" name="lastName" required rules={[{required: true}]}>
+                    <Form.Item label="User Name" name="username" required rules={[{required: true}]}>
                         <Input type="text" placeholder='last name' />
                     </Form.Item>
                 </Col>
@@ -59,7 +54,7 @@ const ApplyDoctor = () => {
                     </Form.Item>
                 </Col>
                 <Col xs={24} md={24} lg={8}>
-                    <Form.Item label="Email Id" type="email" name="emailid" required rules={[{required: true}]}>
+                    <Form.Item label="Email Id" type="email" name="emailid"  required rules={[{required: true}]}>
                         <Input type="text" placeholder='email id' />
                     </Form.Item>
                 </Col>
@@ -100,7 +95,7 @@ const ApplyDoctor = () => {
             </Row>
             <button className='btn btn-primary form-btn' type="submit">Submit</button>
         </Form>
-    </Layout>
+    </>
   )
 }
 

@@ -4,13 +4,17 @@ const doctorSchema = new mongoose.Schema({
     userId: {
         type: String,
     },
+    username: {
+        type: String,
+        required: [false, 'user name is required']
+    },
     firstName: {
         type: String,
-        required: [true, 'first name is required']
+        required: [false]
     },
     lastName: {
         type: String,
-        required: [true, 'last name is required']
+        required: [false]
     },
     phone: {
         type: String,
@@ -46,6 +50,14 @@ const doctorSchema = new mongoose.Schema({
     applicationStatus: {
         type: Object,
         default: "pending",
+    },
+    bookings: {
+        type: Array,
+        default: [],
+    },
+    notification: {
+        type: Array,
+        default: [],
     }
 }, {timestamps: true});
 

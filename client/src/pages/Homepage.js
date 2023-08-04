@@ -4,9 +4,7 @@ import Layout from '../components/Layout';
 const Homepage = () => {
 
   return (
-    <Layout>
       <div>Welcome to Homepage</div>
-    </Layout>
   )
 }
 

@@ -102,7 +102,6 @@ const authController = async(req, res) => {
         const user = await userModel.findOne({
             _id: req.body.userId,
         })
-        
         if (!user) return res.status(200).send({
             success: false,
             message: `User not found`
@@ -111,12 +110,13 @@ const authController = async(req, res) => {
         res.status(200).send({
             success: true,
             data: {
-                name: user.username,
+                name: user.username || user.firstName + " " + user.lastName,
                 emailid: user.emailid,
                 isDoctor: user.isDoctor,
                 isAdmin: user.isAdmin,
                 notification: user.notification,
                 seenNotification: user.seenNotification,
+                phone: user.phone,
             }
         })
     } catch (err) {
@@ -143,10 +143,10 @@ const applyDoctorController = async(req, res) => {
         const admin = await userModel.findOne({isAdmin: true});
         admin.notification.push({
             type: "apply-doctor-request",
-            message: `${newDoctor.firstName} ${newDoctor.lastName} - applied for a doctor account.`,
+            message: `${newDoctor.username} - applied for a doctor account.`,
             data: {
                 doctorId: newDoctor._id,
-                name: newDoctor.firstName + " " + newDoctor.lastName ,
+                name: newDoctor.username,
                 onClickPath: "admin/doctors"
             }
         })
@@ -209,6 +209,41 @@ const deleteAllNotifications = async (req, res) => {
     }
 }
 
+const bookDoctorController = async (req, res) => {
+    try {
+        const doctor = await doctorModel.findOne({_id: req.body.doctorId});
+        doctor.notification.push({
+            type: "doctor-booking-request",
+            message: `${req.body.username} - applied for a booking.`,
+            data: {
+                userId: doctor.userId,
+                patientName: req.body.username,
+                onClickPath: "/"
+            }
+        });
+        doctor.bookings.push({
+            userId: doctor.userId,
+            patientName: req.body.username,
+            onClickPath: "/"
+        });
+        
+        console.log({doctor})
+        const updateddoc = await doctor.save()
+        res.status(200).send({
+            message: "Booking notified to doctor !",
+            success: true,
+            data: updateddoc,
+        })  
+
+    } catch (error) {
+        res.status(500).send({
+            success: false,
+            message: `Failed to Book doctor`,
+            error,
+        })
+    }
+}
+
 module.exports = {
     loginController,
     registerController,
@@ -216,4 +251,5 @@ module.exports = {
     applyDoctorController,
     getAllNotifications,
     deleteAllNotifications,
+    bookDoctorController,
 };

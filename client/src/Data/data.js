@@ -18,7 +18,7 @@ export const userSideBarMenu = [
     {
         name: "Profile",
         path: "/profile",
-        icon: "fa-duotone fa-user"
+        icon: "fa-solid fa-id-card"
     }
 ]
 
@@ -37,6 +37,6 @@ export const adminSideBarMenu = [
     {
         name: "Profile",
         path: "/profile",
-        icon: "fa-solid fa-address-card"
+        icon: "fa-solid fa-id-card"
     }
 ]

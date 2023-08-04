@@ -21,9 +21,7 @@ const Lists = () => {
     }]
 
     return (
-    <Layout>
         <Tabs items={items}/>
-    </Layout>
   )
 }
 
@@ -79,13 +77,31 @@ const List = (props) => {
                 render: (text, record) => (
                     <div className='d-flex'>
                         {record.status === "pending" ?
-                            <button className='btn btn-success'>Approve</button> : 
+                            <button onClick={() => handleAccountStatus(text, record)} className='btn btn-success'>Approve</button> : 
                             <button className='btn btn-danger'>Reject</button>
                         }
                     </div>
                 ) 
             }
         ]
+    }
+
+    const handleAccountStatus = async (text, record) => {
+        try {
+            console.log({text, record})
+            const res = await axios.post("http://localhost:8090/api/v1/admin/changeAccountStatus",{
+                applicationStatus: "approved",
+            },{
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                },
+            })
+            if (res.data.success) {
+                message.success(res.data.message);
+            }
+        } catch (error) {
+            message.error("Something went wrong !")
+        }
     }
 
     useEffect(()=> {
@@ -110,18 +126,17 @@ const List = (props) => {
                 res.data.data.forEach(item => {
                     if(listPageType === "user") {
                         listData.push({
-                            "username": listPageType === "user" ?
-                                item.username : `${item.firstName} ${item.lastName}`,
+                            "username": item.username,
                             "emailid": item.emailid,
                             "isAdmin": item.isAdmin,
                         })
                     } else {
                         listData.push({
-                            "username": listPageType === "user" ?
-                                item.username : `${item.firstName} ${item.lastName}`,
+                            "username": item.username,
                             "emailid": item.emailid,
                             "status": item.applicationStatus,
-                            "actions": ""
+                            "actions": "",
+                            "userId": item._id,
                         })
                     }
                 })

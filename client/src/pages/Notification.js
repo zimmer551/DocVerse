@@ -32,7 +32,7 @@ const Notification = () => {
     }
     const handleDeleteAllRead = async () => {
         try {
-            const res = await axios.post("http://localhost:8090/api/v1/user//delete-all-notifications",{userId: user._id},
+            const res = await axios.post("http://localhost:8090/api/v1/user/delete-all-notifications",{userId: user._id},
             {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -66,10 +66,10 @@ const Notification = () => {
         }
     ]
   return (
-    <Layout>
+    <>
         <h4 className="p-3 text-center">Notifications</h4>
         <Tabs items={items}/>
-    </Layout>
+    </>
   )
 }
 

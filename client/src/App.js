@@ -9,9 +9,11 @@ import { RequireAuth } from "./components/RequireAuth";
 import ApplyDoctor from "./pages/ApplyDoctor";
 import Notification from "./pages/Notification";
 import Lists from "./pages/Lists";
+import Profile from "./pages/Profile";
+import Layout from "./components/Layout";
+import Appointments from "./pages/Appointments";
 
-function App() {
-
+const App = () => {
 
   const { loading } = useSelector(state => state.alerts);
   return (
@@ -24,10 +26,14 @@ function App() {
               <Route path="/register" element={<Register/>} />
               <Route path="*" element={<InvalidPage/>} />
               <Route element={<RequireAuth />}>
-                <Route exact path="" element={<Homepage/>}/>
-                <Route path="/apply-doctor" element={<ApplyDoctor />}/>
-                <Route path="/notification" element={<Notification />}/>
-                <Route path="/admin/users" element={<Lists />}/>
+                <Route element={<Layout />}>
+                  <Route exact path="" element={<Homepage/>}/>
+                  <Route path="/apply-doctor" element={<ApplyDoctor />}/>
+                  <Route path="/notification" element={<Notification />}/>
+                  <Route path="/admin/users" element={<Lists />}/>
+                  <Route path="/profile" element={<Profile />}/>
+                  <Route path="/appointments" element={<Appointments />}/>
+                </Route>
               </Route>
             </Routes>
           }
