@@ -1,7 +1,7 @@
 /*
 
 Express: It acts as the intermediary between the frontend (built with React) and the database
-- for server configuration
+- for server configuration.
 
 - Routing :Express enables you to define routes for different endpoints of your API.
 You can specify the HTTP method, URL path, and the corresponding handler function 
