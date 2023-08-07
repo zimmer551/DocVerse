@@ -2,7 +2,7 @@
 import { message, Table, Tabs } from 'antd';
 import axios from 'axios';
 import React, { useCallback, useEffect, useState } from 'react'
-import Layout from '../components/Layout';
+import { apiUrl } from '../util';
 
 const Lists = () => {
 
@@ -89,7 +89,7 @@ const List = (props) => {
     const handleAccountStatus = async (text, record) => {
         try {
             console.log({text, record})
-            const res = await axios.post("http://localhost:8090/api/v1/admin/changeAccountStatus",{
+            const res = await axios.post(`${apiUrl()}/api/v1/admin/changeAccountStatus`,{
                 applicationStatus: "approved",
             },{
                 headers: {
@@ -113,7 +113,7 @@ const List = (props) => {
     const getList = useCallback(async() => {
         
         try {
-            const res = await axios.post("http://localhost:8090/api/v1/admin/getList",{
+            const res = await axios.post(`${apiUrl()}/api/v1/admin/getList`,{
                 listType: listPageType,
             },
             {

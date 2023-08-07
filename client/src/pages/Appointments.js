@@ -1,6 +1,7 @@
 import { message, Table } from 'antd';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
+import { apiUrl } from '../util';
 
 const Appointments = () => {
 
@@ -52,7 +53,7 @@ const Appointments = () => {
     const handleBooking = async (text, record) => {
         try {
             console.log({text, record})
-            const res = await axios.post("http://localhost:8090/api/v1/user/book-doctor",{
+            const res = await axios.post(`${apiUrl()}/api/v1/user/book-doctor`,{
                 doctorId: record.userId,
                 username: record.username,
             },{
@@ -69,7 +70,7 @@ const Appointments = () => {
     }
 
     const getDoctors = async () => {
-        const res = await axios.post("http://localhost:8090/api/v1/admin/getList",{
+        const res = await axios.post(`${apiUrl()}/api/v1/admin/getList`,{
             listType: "doctor",
         },
         {

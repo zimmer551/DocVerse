@@ -29,12 +29,7 @@
     height: 100%;
 }
 
-.header {
-    min-height: 10vh;
-    margin-bottom: 20px;
-    box-shadow: 0 0 2px gray; 
-    background-color: white;
-}
+
 
 .menu {
     margin-top: 50px;
@@ -62,8 +57,16 @@
    color: rebeccapurple;
 }
 
+.header {
+    height: 70px;
+    margin-bottom: 20px;
+    background-color: rebeccapurple;
+    border-radius: 0px 0px 40px 40px;
+    color: white;
+}
+
 .header-content {
-    margin: 0px, 15px;
+    padding-bottom: 50px;
     display: flex;
     align-items: center;
     justify-content: flex-end;

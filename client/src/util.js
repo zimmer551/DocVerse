@@ -23,9 +23,12 @@ export const handleLogout = () => {
     window.location.href = "/login";
 }
 
-
-
-
+export const apiUrl = () => {
+    if (process.env.NODE_ENV === "development") {
+        return "http://localhost:8090";
+    }
+    return "http://prodhost:8090";
+}
 
 
 

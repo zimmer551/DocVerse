@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
 import { getUser } from '../redux/features/userSlice';
-import { handleLogout } from '../util';
+import { apiUrl, handleLogout } from '../util';
 
 
 export const RequireAuth = ({children}) => {
@@ -13,7 +13,7 @@ export const RequireAuth = ({children}) => {
 
     const getUserData = async() => {
       try {
-        await axios.post("http://localhost:8090/api/v1/user/getUserData", {}, {
+        await axios.post(`${apiUrl()}/api/v1/user/getUserData`, {}, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },

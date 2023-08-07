@@ -3,8 +3,8 @@ import axios from 'axios'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import Layout from '../components/Layout'
 import { getUser } from '../redux/features/userSlice'
+import { apiUrl } from '../util'
 
 const Notification = () => {
 
@@ -13,7 +13,7 @@ const Notification = () => {
     
     const handleMarkAllRead = async() => {
         try {
-            const res = await axios.post("http://localhost:8090/api/v1/user/get-all-notifications",{userId: user._id},
+            const res = await axios.post(`${apiUrl()}/api/v1/user/get-all-notifications`,{userId: user._id},
             {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -32,7 +32,7 @@ const Notification = () => {
     }
     const handleDeleteAllRead = async () => {
         try {
-            const res = await axios.post("http://localhost:8090/api/v1/user/delete-all-notifications",{userId: user._id},
+            const res = await axios.post(`${apiUrl()}/api/v1/user/delete-all-notifications`,{userId: user._id},
             {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`

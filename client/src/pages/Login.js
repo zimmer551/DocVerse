@@ -5,6 +5,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { hideLoading, showLoading } from '../redux/features/alertSlice';
+import { apiUrl } from '../util';
 
   const Login = () => { 
     
@@ -15,7 +16,7 @@ import { hideLoading, showLoading } from '../redux/features/alertSlice';
     const onFinish = async(values) => {
       try {
         dispatch(showLoading());
-        const res = await axios.post('http://localhost:8090/api/v1/user/login', values);
+        const res = await axios.post(`${apiUrl()}/api/v1/user/login`, values);
         dispatch(hideLoading());
         if (res.data.success) {
           message.success(`Login Successful. Welcome !`);

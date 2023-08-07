@@ -3,8 +3,8 @@ import axios from 'axios'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import Layout from '../components/Layout'
 import { hideLoading, showLoading } from '../redux/features/alertSlice'
+import { apiUrl } from '../util'
 
 
 
@@ -17,7 +17,7 @@ const ApplyDoctor = () => {
     const handleFinish = async (values) => {
         try {
             dispatch(showLoading());
-            const res = await axios.post('http://localhost:8090/api/v1/user/apply-doctor', {
+            const res = await axios.post(`${apiUrl()}/api/v1/user/apply-doctor`, {
                 ...values,
                 userId: user._id,
             }, {

@@ -1,5 +1,5 @@
 import { Badge } from 'antd'
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useSelector } from 'react-redux'
 import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom'
 import { adminSideBarMenu, userSideBarMenu } from '../Data/data'
@@ -59,7 +59,7 @@ const Layout = ({children}) => {
                              onClick={() => {navigate("/notification")}}>
                                 <i style={{marginRight: "20px"}} className='fa-solid fa-bell'></i>
                             </Badge>
-                            <Link to="/profile">{user?.name}</Link>
+                            <Link to="/profile"><span style={{color: "white", marginLeft: "30px"}}>{user?.name}</span></Link>
                         </div>
                     </div>
                     
