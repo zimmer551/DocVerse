@@ -15,13 +15,7 @@ connectDb();
 const app = express();
 
 // middleware
-app.use(cors(
-    {
-        origin: ["https://doc-verse-client.vercel.app/"],
-        methods: ["POST", "GET", "OPTIONS"],
-        credentials: true
-    }
-));
+app.use(cors());
 app.use(express.json()); // so that we can pass json in request body
 app.use(morgan('dev'));
 
