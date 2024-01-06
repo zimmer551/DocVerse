@@ -124,6 +124,7 @@ const List = (props) => {
             if (res.data.success) { 
                 const listData = [];
                 res.data.data.forEach(item => {
+                    console.log({item})
                     if(listPageType === "user") {
                         listData.push({
                             "username": item.username,
@@ -132,7 +133,7 @@ const List = (props) => {
                         })
                     } else {
                         listData.push({
-                            "username": item.username,
+                            "username": item?.firstName + " " + item?.lastName,
                             "emailid": item.emailid,
                             "status": item.applicationStatus,
                             "actions": "",
