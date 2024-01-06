@@ -27,5 +27,5 @@ export const apiUrl = () => {
     if (process.env.NODE_ENV === "development") {
         return "http://localhost:8090";
     }
-    return "https://doc-verse-api.vercel.app";
+    return "https://doc-verse-server.vercel.app";
 }
