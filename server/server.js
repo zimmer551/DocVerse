@@ -11,7 +11,7 @@ dotenv.config();
 // Mongodb connection
 connectDb();
 
-// rest Object
+// rest Object.
 const app = express();
 
 // middleware
