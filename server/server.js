@@ -15,17 +15,23 @@ connectDb();
 const app = express();
 
 // middleware
-app.use(cors());
+app.use(cors(
+    {
+        origin: ["*"],
+        methods: ["POST", "GET"],
+        credentials: true
+    }
+));
 app.use(express.json()); // so that we can pass json in request body
 app.use(morgan('dev'));
 
 // route
 /* 304 status -> browser using cached response, since request resourse in not modified.*/
 
-app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    next();
-  });
+// app.use((req, res, next) => {
+//     res.setHeader('Access-Control-Allow-Origin', '*');
+//     next();
+//   });
 
 app.get('/', (req, res) => {
     res.status(200).send({message:"server running"})
