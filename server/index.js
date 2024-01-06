@@ -28,10 +28,10 @@ app.use(morgan('dev'));
 // route
 /* 304 status -> browser using cached response, since request resourse in not modified.*/
 
-// app.use((req, res, next) => {
-//     res.setHeader('Access-Control-Allow-Origin', '*');
-//     next();
-//   });
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    next();
+  });
 
 app.get('/', (req, res) => {
     res.status(200).send({message:"server running"})
