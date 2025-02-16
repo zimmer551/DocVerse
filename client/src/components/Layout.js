@@ -51,16 +51,18 @@ const Layout = ({children}) => {
                 </div>
                 <div className='content'>
                     <div className='header'>
-                        <h4>
-                            {userType}
-                        </h4>
-                        <div className='header-content' style={{cursor: 'pointer', "marginRight": "20px"}}>
+                        <span>
+                            <h4>
+                                {userType}
+                            </h4>
+                        </span>
+                        <span className='header-content' style={{cursor: 'pointer', "marginRight": "20px"}}>
                             <Badge count={user?.notification?.length}
                              onClick={() => {navigate("/notification")}}>
                                 <i style={{marginRight: "20px"}} className='fa-solid fa-bell'></i>
                             </Badge>
                             <Link to="/profile"><span style={{color: "white", marginLeft: "30px"}}>{user?.name}</span></Link>
-                        </div>
+                        </span>
                     </div>
                     
                     <div className='body'>

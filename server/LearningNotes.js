@@ -118,4 +118,76 @@ const getList = useCallback(() => {
   OR
   write fetch logic inside useEffect
 
+
+  ------------------------ Nginx ------------------------
+  Source  : https://www.freecodecamp.org/news/the-nginx-handbook/
+
+  is a powerful reverse proxy server, load balancer, http cache, compression
+  can handle more than 10k concurrent request, and fastly serve static content
+  for static content -> NGINX simply responds with the file without running any additional processes
+
+  Forward proxy -> clients on pvt network -> resource on the internet
+  Reverse proxy -> clients on the internet -> resourse on pvt network
+
+  When a client sends a request to the NGINX server, NGINX forwards that request to the appropriate backend 
+  server or process (e.g., PHP-FPM, Node.js, Python) to handle the request. After the backend server or 
+  process processes the request and generates a response, NGINX takes that response and sends it back 
+  to the client that originally made the request.
+
+  Cache-control -
+  no-store -> do not store any file in cache
+  no-cache -> do not attempt to check the cache | always miss
+  must-revalidate -> always check the asset is fresh
+  max-age=1534232 -> maximum time the asset is fresh
+
+  Advantages :
+  One entry point : Only one server publically available, apply all that security to this server
+  Encrypted communication
+  Compress the response (better for heavy files like videos)
+  Send response in chunk
+  
+
+  install a vm in ubuntu, configure,
+  install nginx in vm / server
+  provision a virtual private server
+  client communicate to virtual ip -> load balancer -> servers / clusters
+  reload or restart nginx after making changes in nginx.conf file
+  everything inside a NGINX configuration file is a directive. Directives are of two types:
+   Simple Directives and Block Directives
+   http {
+    server {
+        listen 80;
+        server_name library.test; // nginx-handbook.test:80;
+
+        return 200 "your local library!\n";
+    }
+
+
+    server {
+        listen 80; // 8080    
+        server_name librarian.library.test; // nginx-handbook.test;
+
+        return 200 "welcome dear librarian!\n";
+    }
+   }
+   /srv dir : site specific data to serve
+   /var/log/nginx log files
+
  */
+
+  /*
+  VM : 
+  A server have a Hypervisor, that helps to create multiple VMs
+  Each VM consume lot of disk space, RAM, CPU
+  Slow to startup, requires liscence
+  VM simulates a entire machine
+
+  Containers: 
+  Only simulates/containes an application that packages 
+    files, configs and dependencies necessary to run it
+  Put all things required to run a website into the container and host it.
+  Docker : create manage and run container
+  Has, server, OS, Container Engine(unpacks the contianer)
+  Light weight, fast, less ram, cpu power
+
+  */

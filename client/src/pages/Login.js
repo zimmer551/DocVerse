@@ -1,6 +1,6 @@
 import React from 'react';
 import '../styles/Register.css';
-import { Button, Checkbox, Form, Input, message } from 'antd';
+import { Button, Checkbox, Form, Input, message, Table } from 'antd';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
@@ -12,6 +12,28 @@ import { apiUrl } from '../util';
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { state } = useLocation();
+
+    const data = [
+      {
+        username: "d",
+        password: "d"
+      },
+      {
+        username: "admin",
+        password: "d",
+      }
+    ]
+
+    const cols = [
+      {
+        title: "User Name",
+        dataIndex: "username"
+      },
+      {
+        title: "Password",
+        dataIndex: "password"
+      }
+    ]
 
     const onFinish = async(values) => {
       try {
@@ -109,7 +131,13 @@ import { apiUrl } from '../util';
           </Button>
       </div>
       
-    </Form>
+        </Form>
+     <div>
+     <Table dataSource={data} 
+            columns={cols} 
+            size="small"
+        />
+     </div>
     </div>
   );
 }
